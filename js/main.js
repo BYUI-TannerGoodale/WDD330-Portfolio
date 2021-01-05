@@ -11,13 +11,13 @@ console.log(links.length);
 
 //Pull ol from document object and populate it with il elements using the links array as the data scourse
 
-let directory = document.getElementById("directory");
+var directory = document.getElementById("directory");
 
 window.onload = function(){
     links.forEach(link => {
         var li = document.createElement("li");
         li.value = link.label;
         li.href = link.url;
-        directory.appendChild(li);
+        window.directory.appendChild(li);
     });
 };
