@@ -13,7 +13,7 @@ console.log(links.length);
 
 let directory = document.getElementById("directory");
 
-directory.onload = function(){
+window.onload = function(){
     links.forEach(link => {
         var li = document.createElement("li");
         li.value = link.label;
