@@ -2,21 +2,21 @@
 
 const links = [
     {
-        label: "Week1 Notes",
+        label: "Week 1 Notes and Activites",
         url: "week1/index.html"
     }
 ];
 
-console.log(links.length);
+//Pull ol from document object and populate it with il elements using the links array as the data source
 
-//Pull ol from document object and populate it with il elements using the links array as the data scourse
-
-window.onload = function(directory){
+window.onload = function(){
     var directory = document.getElementById("directory");
     links.forEach(link => {
         var li = document.createElement("li");
-        li.innerHTML = link.label;
-        li.href = link.url;
+        var a = document.createElement("a");
+        a.innerHTML = link.label;
+        a.href = link.url;
+        li.appendChild(a);
         directory.appendChild(li);
     });
 };

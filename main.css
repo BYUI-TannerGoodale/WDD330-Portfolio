@@ -1,0 +1,22 @@
+/* Main style sheet for website, global application */
+
+/* body settings and styles */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    color: #3f3e3e;
+    font-weight: lighter;
+}
+
+/* Header styles */
+header{
+    border: 1px solid white;
+    padding: 10px;
+    box-shadow: 0px 1px 2px #888888;
+}
+
+/* containter custom class rules */
+.container{
+    padding-left: 2em;
+}
