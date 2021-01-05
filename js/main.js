@@ -11,7 +11,7 @@ console.log(links.length);
 
 //Pull ol from document object and populate it with il elements using the links array as the data scourse
 
-let directory = document.getElementById(directory);
+let directory = document.getElementById("directory");
 
 directory.onload(function(){
     links.forEach(link => {
