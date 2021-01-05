@@ -13,11 +13,11 @@ console.log(links.length);
 
 let directory = document.getElementById("directory");
 
-directory.onload(function(){
+directory.onload = function(){
     links.forEach(link => {
         var li = document.createElement("li");
         li.value = link.label;
         li.href = link.url;
         directory.appendChild(li);
     });
-})
+};
