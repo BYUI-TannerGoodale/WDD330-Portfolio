@@ -15,7 +15,7 @@ window.onload = function(directory){
     var directory = document.getElementById("directory");
     links.forEach(link => {
         var li = document.createElement("li");
-        li.value = link.label;
+        li.innerHTML = link.label;
         li.href = link.url;
         directory.appendChild(li);
     });
