@@ -10,21 +10,15 @@
 </head>
 <body>
     <header>
-        <h1>Week 1 Portfolio</h1>
+        <h1>Week  Portfolio</h1>
     </header>
 
     <div class="container">
-        <h2>Week 1</h2>
+        <h2>Week </h2>
         <ul>
             <li><a href="notes/index.html">Notes</a></li>
-            <li><a href="activites/story_editor.html">Story Editor Activity</a></li>
         </ul>
         <p></p>
     </div>
-    <footer>
-        <div class="container">
-            <a href="../index.html">&#060 Go Back</a>
-        </div>
-    </footer>
 </body>
 </html>

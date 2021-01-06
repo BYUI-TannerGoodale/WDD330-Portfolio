@@ -1,5 +1,35 @@
 /* Main style sheet for website, global application */
 
+/* Custon fast class rules */
+.block{
+    display: block;
+}
+
+.m1{
+    margin: 1em;
+}
+.m2{
+    margin: 2em;
+}
+.m3{
+    margin: 3em;
+}
+
+.padd{
+    margin-top: 4.4px;
+    margin-bottom: 4.4px;
+}
+
+.mt1{
+    margin-top: 1em;
+}
+.mt2{
+    margin-top: 2em;
+}
+.mt3{
+    margin-top: 3em;
+}
+
 /* body settings and styles */
 body{
     font-family: Arial, Helvetica, sans-serif;
@@ -16,7 +46,35 @@ header{
     box-shadow: 0px 1px 2px #888888;
 }
 
+/* Sticky footer styles */
+html {
+    position: relative;
+    min-height: 100%;
+}
+  
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+  
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
 /* containter custom class rules */
 .container{
     padding-left: 2em;
+}
+
+.container p{
+    max-width: 70%;
+}
+
+/* list custom rules */
+li{
+    max-width: 70%;
 }

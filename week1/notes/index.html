@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 1 Notes</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 1 Notes</h1>
+    </header>
+    <div class="container">
+        <h2>Pre-reading Notes</h2>
+        <p>
+        Localstorage seems like it would be usefull for reducing the load on servers an databases, at least for user centric temporary data
+        like contents of a shoppig cart or somthing along those lines. I can see that it's no replacement for a database though, as a database
+        would hold infrmation that was more in line with business or server needs that would need to be kept indefinitely.
+        </p>
+    </div>
+    <div class="container">
+        <h2>Questions to answer</h2>
+        <ol>
+            <li>How can I store data so it isn’t lost when the application stops?</li>
+                <ul>
+                    <li>A database can store various inputs from a user and can also aid in delivering outputs.</li>
+                    <li>Localstorage can save data on a client device much like a cookie, but that won't be deleted 
+                        when the website instace is ended. It uses name-value pairs like a session or cookie as well.
+                    </li>
+                </ul>
+            <li>How do I get data back into my application once it has been stored?</li>
+                <ul>
+                    <li>JavaScript has built in methods that can call data saved on localStorage. You only need define where
+                        that data goes.
+                    </li>
+                    <li>An API call to a database or a server connected to one can do similar things, but with data that is stored
+                        off the client and is not always in a key-value pair.
+                    </li>
+                </ul>
+            <li>What can I do to allow the user to communicate?</li>
+                <ul>
+                    <li>Giving the user input options through some form is the standard way to set up communication.</li>
+                    <li>Event listeners can also be used to get ques from a user.</li>
+                </ul>
+        </ol>
+    </div>
+    <div class="container">
+        <h2>Thoughts</h2>
+        <p>
+            A lot of the reading material is mostly review, outside of never actually using localStorage before. It's been a long time
+            sense I've touched the front end of web development. I've spent the past few semesters building backend structures and
+            using frameworks. It's feels kind of funny to be doing native development now. A lot of the ideas in backend development
+            seem to transfer over to the front end without much effort though.
+        </p>
+        <p>
+            Local storage seems well enough for data that dosen't need to be secure. It seems to be very similar to a cookie
+            or session, only lasting longer in memory.
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <h2>Master Mobile UX Video Notes</h2>
+    </div>
+    <div class="container">
+        <h2>Notes</h2>
+        <p></p>
+    </div>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,7 @@
+/* Custom rules for the activity */
+
+#story_editor{
+    width: 800px;
+    height: 250px;
+    background-color: lemonchiffon;
+}

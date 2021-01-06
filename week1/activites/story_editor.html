@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Writer</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+    <link rel="stylesheet" href="activity.css" />
+    <script src="activity.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Story Editor</h1>
+    </header>
+    <div class="container">
+        <p>The story editor uses local storage to save stories or notes entered by the user.
+            In order to save a story, add a name and some text in the yellow body area then click the save button.
+            To display the story, click the display button. To load a story, enter the name of the story and click
+            the load and edit button.
+        </p>
+    </div>
+    <div class="container mt2">
+        Story Name: <input id="name_input">
+        <section class="padd">
+            <button onclick="loadStory()">Find and Edit It</button>
+            <button onclick="saveStory()">Save It</button>
+            <button onclick="displayStory()">Display It</button>
+        </section>
+        <textarea id="story_editor" placeholder="Start your story here..."></textarea>
+
+        <section id="story_display"></section>
+    </div>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>
