@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2 Notes</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 2 Notes</h1>
+    </header>
+    <div class="container">
+        <h2>Reading Notes (Chapter 2, Programming Basics)</h2>
+        <p>
+            It was nice to go through the basics again. I find myself all too often forgetting a lot of these things. 
+            I’ll make a list of notable points below that stuck out to me. JavaScript seems to have evolved quite a bit 
+            with the introduction of ES6, but that’ll be for later.
+        </p>
+        <p>
+            It’s nice to see that JavaScript has adopted inelegant scopes for variables. I still find myself instinctively 
+            declaring with var and then getting my variable hoisted. It’s a habit that developed more bad habits. I’ll have 
+            to learn to break it and really focus on using const and let.
+        </p>
+        <p>
+            Direct assignment and assignment by reference has always been a bit confusing for me, but I think this reading 
+            cleared it up, at least as far as JavaScript goes. The meat of it is, primitive data types will operate by direct 
+            assignment, whereas objects will be referenced. It’s important to know what is a primitive data type and what is 
+            an object when your assigning things to variables.
+        </p>
+        <p>
+            Template literals sounds like a game changer for strings. With the ability to use interpolation, I’ll likely 
+            start using template literals almost exclusively. This makes JavaScript handle a lot more like C# in my opinion, 
+            or I suppose any language that’s been using strings like this.
+        </p>
+        <p>
+            Symbols… I’ll have to wait until chapter 5 to see how these things work in action I suppose. I’m having a bit 
+            of a hard time understanding the bulk of it. I get that they can create unique identifiers for object properties, 
+            but was the problem so bad they had to make a new primitive type for it? I suppose I never really messed with 
+            object-oriented JavaScript, so I guess I’ll see when the time comes.
+        </p>
+        <p>
+            The rest of the chapter was largly universal review. Nothing I found too noteworthy.
+        </p>
+    </div>
+    <div class="container">
+        <h2>Reading Notes (Chapter 3, Arrays, Logic, and Loops)</h2>
+        <p>
+            Quite a lot of information on arrays. They are my go-to list, and I did learn a lot about different functions, 
+            but it was mostly review. Set’s however, are new to me, at least as far as JavaScript goes. It’s interesting 
+            that sets can be used to remove duplicate values and can be sorted much faster than an array can. I can see this 
+            being a useful tool for speeding up programs, which is vital for the web and SEO algorithms.
+        </p>
+        <p>
+            Sets seem pretty impractical on their own, given that you can’t read the data directly from it, but still, 
+            in terms of speeding things up and being able to convert on to (or from) an array really defeats the purpose 
+            of that. It’s god optimizing tool for sure, one I’ll probably get in the habit of using when I need unique values 
+            out of an array.
+        </p>
+        <p>
+            Maps, these remind me of hash tables. I can see how maps can make manipulating large data packets easier. 
+            Combined with a callback function, you can iterate through data and have something totally different come out in the end. 
+            I especially like how easy it is to convert a map to an array. It seems that all data sets can be tied together somehow, 
+            even it they all come back to the array in the end.
+        </p>
+        <p>
+            I tend to avoid the tyranny operator myself; I don’t think it’s very readable. There are times where it makes sense 
+            to use it, but I hold readability over compatibility in general. Still, it is nice to review it and I suppose I can 
+            practice using it more often. I wonder if it provides any performance benefits over the old if else set or if the 
+            compiler treats them all the same anyway.
+        </p>
+        <p>
+            It’s interesting how they show a for loop being used to iterate over an array. I used to do that method all the time, 
+            until I learned about the forEach loop. I wonder if JavaScript’s forEach loop works like C#’s, that is, on objects as 
+            well as arrays, or any list for that matter.
+        </p>
+        <p>
+            For-of loops, that’s interesting. Why not just make a forEach loop that works on all sets? Maybe it’s array specific, 
+            which begs the question, if the method overloading in JavaScript? For-of seems to be more in line what the forEach 
+            that I’m familiar with. It works on an enumerable object and iterates through the entirety of it. I especially like 
+            that it can specify data to be retrieved from a map, such as the key or value, or even both. .keys(), .values(), 
+            .entries(), it’ll be important to remember those.
+        </p>
+    </div>
+    <div class="container">
+        <h2>Reading Notes (Chapter 4, Functions)</h2>
+        <p>
+            The arrow function reminds me a lot of the lambda expression. As a matter of fact, it’s kind of hard to see the difference. 
+            I suppose the lambda expression can have a name (isn’t anonyms) and the arrow function can’t (is anonyms). 
+            Beyond that, they seem to act in much the same way. I suppose time using both will reveal more of the differences
+            between the two.
+        </p>
+        <p>
+            I used to use the terms parameters and arguments interchangeably and found it a point of confusion, thank goodness
+            this book answers a lot of these types of things for me. Parameters are what define the type of data (and name for it)
+            that goes into a function. The argument is the data itself when the function is actually being declared.
+        </p>
+        <p>
+            Arguments function obsoleted by the rest operator? It seems that way to me. Given the ability to set a seemingly 
+            unlimited number of arguments inside of an array defiantly opens the doors to dynamic functions. Still, I wonder, 
+            is there function overloading? Can I use the same name for a function with different parameters to define a different 
+            action that function will take? 
+        </p>
+        <p>
+            Could default parameters be used to make some form of overloaded method or function? You could theoretically check if 
+            a parameter has been set by the user, and if it has, change the business logic of the function accordingly. It seems 
+            like a long winded roundabout way to handle something that might be pointless in JavaScript, but I’m kind of suppressed 
+            that there’s nothing mentioned about it.
+        </p>
+        <p>
+            Would it be a design choice to declare functions via function definitions and then put them all at the bottom? 
+            It seems like it could be a benefit to put them all in the same place. On the other hand, I can see how that can 
+            cause problems sometimes. Maybe it would better to place the functions next to their applicable area. It seems 
+            like a design choice in the end. Still, for one off functions, I can see arrow functions being useful.
+        </p>
+        <p>
+            This book really cleared up callback functions for me. I used them in AJAX and in asynchronous server methods before, 
+            but I didn’t really understand the core of what they actually were. It makes sense that a callback function is just a 
+            function being passes as a parameter. That answers a lot of questions about them, as a matter of fact. I just wonder 
+            if you can enforce what functions are passed now, rather then passing any function. Granted, I suppose that doesn’t 
+            really make a difference sense the developer will be the one specifying the function passed and not the user.
+            Maybe callbacks are how you could make “overloaded” functions.
+        </p>
+    </div>
+</body>
+</html>
