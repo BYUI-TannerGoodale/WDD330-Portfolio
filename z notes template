@@ -14,5 +14,10 @@
     <div class="container">
         <p></p>
     </div>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
 </body>
 </html>
