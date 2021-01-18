@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 Notes</title>
+    <link rel="stylesheet" href="../normalize.css" />
+    <link rel="stylesheet" href="../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 3 Notes</h1>
+    </header>
+    <div class="container">
+        <h2>JavaScript’s "this" method.</h2>
+        <p>Pre reading note: I've used the this method in other languages before. With any luck, JavaScript's will work the same.</p>
+        <p>
+            It’s nice to see that JavaScript objects behave much the same way as objects in other languages. It’s interesting to 
+            see in the example how they defined an object literal, then defined a property that wasn’t defined in the initial 
+            creation and applied a method to it (or function to create a method). I was thinking this would throw an error, but 
+            JavaScript just adds the method and allows a user to call it.
+        </p>
+        <p>
+            I wonder if the way the method is declared changes its scope and behavior sense it’s inside of an object. For example, 
+            they used a function expression when they defined their method. Would that have worked differently if they used a 
+            function declaration? Does it make a difference if it is an object method?
+        </p>
+        <p>
+            Creating object literals is fine for shot code, but creating classes would be ideal for longer and larger applications 
+            that use objects. Is JavaScript capable of defining classes and using constructor methods? A quick google search shows 
+            that it can create classes and even implements a default constructor if you don’t define a specific one. This was a 
+            feature added in ES6.
+        </p>
+        <p>
+            I would prefer to define methods inside of my object declaration or inside of the class that defines it. With that 
+            being said, the method shorthand version sees to be more intuitive than the longer “property : function() {..}; method”. 
+            The website mentions small differences when it comes to class inheritance though. I wonder what those differences are.
+        </p>
+        <p>
+            The way “this” works in JavaScript objects seems to be the same way it works in other languages. It allows JavaScript 
+            to actually practice Object Oriented Principles. Without the “this” keyword, OOP wouldn’t actually work all that will 
+            in JavaScript. With that being said, it behaving differently outside of objects.
+        </p>
+        <p>
+            The “this” keyword can be defined outside of an object, but the method it is defined with only really works assuming 
+            it is tied to (called with) a valid object that has the necessary properties. It just seems like another weakly typed 
+            feature of JavaScript. It allows a method defined with “this” to be used on multiple objects, even if they seem 
+            unrelated, but allows for more room for error. I suppose it’s a net positive in the end though.
+        </p>
+        <p>
+            Part one of the activites will be playing with the "this" keyword.
+        </p>
+    </div>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>
