@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Assignment</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Team Assignment | Week 2</h1>
+    </header>
+    <section class="container">
+        <h2>Core Requirements</h2>
+        <div class="container">
+            <h3>Requirement 1</h3>
+            <p>
+                The following code will take user input and display it in the web page after a user presses a button.
+                The button will call a JavaScript function to fufill this requirement. The JS function will come form
+                a script tag inside of the html, as requested.
+            </p>
+            <div class="container">
+                <input type="text" id="req1_input" />
+                <button onclick="addImput()">Add Your Input!</button>
+                <div id="req1_div"></div>
+                <script>
+                    function addImput(){
+                        // Define user input then insert it into empty div tag
+                        let userInput = document.getElementById("req1_input").value;
+                        document.getElementById("req1_div").innerHTML = userInput;
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="container">
+            <h3>Requirement 2</h3>
+            <p>
+                The following code will take a user entered number and sum all the numbers up to the number provided.
+                Decimals will be rounded to the nearest whole number.
+            </p>
+            <div class="container">
+                <input type="text" id="req2_input" />
+                <button onclick="funnySum()">Power Sum!</button>
+                <div id="req2_div"></div>
+                <script>
+                    function funnySum(){
+                        // Define user input
+                        let userInput = document.getElementById("req2_input").value;
+                        // Check if user input is number
+                        if(isNaN(userInput)){
+                            alert(`Please enter a numeric value only.`);
+                            return;
+                        }
+                        // Round user input
+                        userInput = Math.round(userInput);
+                        // Define value holding variable
+                        let inputSummed = 0;
+                        // Power sum user input
+                        for(i = 0; i <= userInput; i++){
+                            inputSummed += i;
+                        }
+                        // Change the innerHTML of empty div tag
+                        document.getElementById("req2_div").innerHTML = inputSummed;
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="container">
+            <h3>Requirement 3</h3>
+            <p>
+                The following code will take two user inputs and add them together. Please enter a number in both inputs.
+            </p>
+            <div class="container">
+                <input type="text" id="req3_input1" />
+                <p>+</p>
+                <input type="text" id="req3_input2" />
+                <button onclick="inputSum()">Add Numbers</button>
+                <div id="req3_div"></div>
+                <script>
+                    function inputSum(){
+                        // Define user inputs
+                        let input1 = document.getElementById("req3_input1").value.trim();
+                        let input2 = document.getElementById("req3_input2").value.trim();
+                        // Verify inputs are numbers
+                        if(isNaN(input1) || isNaN(input2)){
+                            alert(`Both inputs must be a single number.`);
+                            return;
+                        } else if(input1 == "" || input2 == ""){
+                            alert(`Both spaces must have a numeric input.`);
+                            return;
+                        }
+                        input1 = Number(input1);
+                        input2 = Number(input2);
+                        document.getElementById("req3_div").innerHTML = input1 + input2;
+                    }
+                </script>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>
