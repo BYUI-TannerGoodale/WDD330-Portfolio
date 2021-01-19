@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 3 Notes</title>
-    <link rel="stylesheet" href="../normalize.css" />
-    <link rel="stylesheet" href="../main.css" />
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
 </head>
 <body>
     <header>
@@ -48,7 +48,191 @@
             unrelated, but allows for more room for error. I suppose it’s a net positive in the end though.
         </p>
         <p>
-            Part one of the activites will be playing with the "this" keyword.
+            Part one of the activites will be playing with the "this" keyword. Many notes in comments in code.
+        </p>
+    </div>
+    <div class='container'>
+        <h2>Chapter 5 Notes</h2>
+        <p>
+            Continuing on from the first section, I find it interesting that objects can have property names that don’t HAVE to 
+            follow variable naming conventions. So long as it is wrapped in quotes, it can be used. I would think that this method 
+            would break dot notation, however and generally be less desirable. I for one, will likely stick to variable naming 
+            conventions.
+        </p>
+        <p>
+            Properties can be removed from an object via the delete method. For example, “delete superman.fly;”. This would return 
+            a bool value depending on success or failure. This permanently removed the property from the object. The property can 
+            be readded manually if desired for some reason as well.
+        </p>
+        <p>
+            You can also nest objects; this works much as you would expect it to. Nested objects largely remind me of JSON packets. 
+            As a matter of fact, I’m pretty sure you can turn nested objects into JSON data with a built-in method. JSON.stringify() 
+            if I recall, and JSON.parse() to take JSON and make it JavaScript again.
+        </p>
+        <p>
+            Using objects as function parameters is something I’ve never thought of, but it makes perfect sense. The developer has 
+            built in names and just supplies a value to each. This also makes it possible to enter names out of order. Though, I 
+            thought we could use named parameters already. What is the difference? Well, objects can be passed still, definitely 
+            something to take note of. NOTE: apparently this is using named parameters.
+        </p>
+        <p>
+            Namespacing seems like it’ll be important. Essentially, it creates a massive object that holds related methods together. 
+            I can see that being important when building a library that will be used by many other developers or when you need to 
+            make portable code.
+        </p>
+        <p>
+            It’s nice to see that the stringify method will ignore object methods. This makes defining JSON a lot easier from a 
+            development layout standpoint. Though it is important to understand the basic operations of a program before you start 
+            writing it. Still, it’s an easy built-in feature. I wonder if there is a way you can pass method definitions though. 
+            I suppose you would need a universal standard to translate it to useable code on whatever server it lands on.
+            "These methods are particularly useful when it comes to sending data to, and receiving data from, a web server using Ajax 
+            requests (see Chapter 13) – or when using localStorage to store data on a user’s machine" -From the Readings.
+        </p>
+        <p>
+            Date objects have private properties that can only be accessed via getters. I wonder if we can declare user defined 
+            objects with private properties. Also, does that mean that the date objects have setters? Or are the properties only 
+            set when the constructor method is called?
+        </p>
+        <p>
+            Reading on, I find that most of the getter methods have corresponding setter methods as well. Note that the timestamp 
+            returned in many of the methods can be seen as a normal date by entering the .toString() method on the date object.
+            "Working with dates and timezones can be tricky. Themoment.js librarygives you a large number of methods that make it 
+            easier to work with dates, as well as support for multiple locales." - From the Readings.
+        </p>
+        <p>
+            Regular expressions have long been the bane of me. Still, they’re very useful for front end validation and can even be 
+            used on the server side for secondary validation. I’ll have to learn how to use them and learn to enjoy it too.. 
+            As per usual, the preferred way to create a regular expression (as with almost any object) is to use a literal. Still, 
+            the constructor can create a regexp from a variable or user input, so I can see that being important on dynamic features.
+        </p>
+        <p>
+            Groups of characters are tracked by placing them inside of a set of square brackets. For example, [aeiou] will track vowels 
+            and [qwstr] will check if a latter in that section of the regexp is either q, w, s, t or r. Sequences can be tracked using 
+            a dash “-“.  Regexp are case sensitive by default and can be made case insensitive by appending “i” to the end of the regexp. 
+            This is because regexp are objects and have built in methods. “g” is also a method and it returns all matching cases, 
+            not just the first one. “m” allows the regexp to read multiple lines. An example of using one of the methods is as follows, 
+            “pattern = /java/i”.
+        </p>
+        <p>Metacharacters as defined in the readings (JavaScript novice to ninja 2nd edition)</p>
+        <ul>
+            <li>. matches any character, except line breaks</li>
+            <li>\w matches any word character, and is equivalent to [A-Za-z0-9_]</li>
+            <li>\W matches any non-word character, and is equivalent to [\^A-Za-z0-9_]</li>
+            <li>\d matches any digit character, and is equivalent to [0-9]</li>
+            <li>\D matches any non-digit character, and is equivalent to [^0-9]</li>
+            <li>\s matches any whitespace character, and is equivalent to [ \t\r\n\f]</li>
+            <li>\S matches any non-whitespace character, and is equivalent to [^ \t\r\n\f]</li>
+        </ul>
+        <p>Modifiers as defined in the readings (JavaScript novice to ninja 2nd edition)</p>
+        <ul>
+            <li>? makes the preceding token in the regular expression optional</li>
+            <li>* matches one or more occurrences of the preceding token</li>
+            <li>+ matches one or more occurrences of the preceding token</li>
+            <li>{n} matchesnoccurrences of the preceding token</li>
+            <li>{n,} matches at leastnoccurrences of the pattern</li>
+            <li>{,m} matches at mostmoccurrences of the preceding token</li>
+            <li>{n,m} matches at leastnand at mostmoccurrences of the preceding token</li>
+            <li>^ marks the position immediately before the first character in the string</li>
+            <li>$ marks the position immediately after the last character in the string</li>
+        </ul>
+        <p>Special characters and modifiers need to be escaped using a backslash. Without a backslash, they can not be matched in a regexp.</p>
+        <p>
+            The following regexp would match any word that starts with a capital letter and dosen't have numbers in it (I think).
+            "^[A-Z][a-z]*\D$". This is the case when tested on <a href="https://regex101.com/">https://regex101.com/</a>. This is
+            tested in the activites under part one. and found in the soucres tab under part1.js.
+        </p>
+        <p>
+            After going through the ninja quiz, I am starting to have second doubts about my understanding of “this” in JavaScript. 
+            I think I’ll look at a few quick tutorials online and see if that clarifies things a bit. It could also be that I just 
+            woke up and got almost no sleep last night too. Either way, I need to understand it to the core. Ok, it’s pretty much 
+            what I thought it was, except I learned about the bind method that lets me bind “this” from a function to an object. 
+            Lets try using the bid method in the sandbox.
+        </p>
+    </div>
+    <div class='container'>
+        <h2>DOM Manipulation</h2>
+        <p>
+            Most of this chapter sees to be review. I'll go back and note anything of intrest. I do find it funny that getElementById() is
+            over 20 years old as of this point. I wonder if it's been refined in the background at all ovr the years. Not that there is 
+            much too it, of course.
+        </p>
+        <p>
+            I was unaware of the nodeType method. I have a hard time seeing a practical use for it now days, but I’m sure 
+            something like verifying the source of user input would be an example. Or maybe iterating through the page and 
+            changing elements with a particular node type. Still, not a very practical tool on the surface, but when I consider 
+            styling, perhaps there is some room for fun too.
+        </p>
+        <p>
+            I’ve seen document.querySelector() before but never got around to using it too often. I think I’ll start using it 
+            more and try to phase away from the older methods. I predict that querySelector() is going to be supported long 
+            after getElemnetById(), granted I can’t see that one going out of common use any time soon. What I find the most 
+            promising is the ability to use querySelector() on any element, not just the document.
+        </p>
+        <p>
+            I use getAttribute and setAttribute often, even with that being said, I was always under the impression you had 
+            to at least define the attribute in the html file before you tried to set it. I guess I can hold back on that 
+            and use the setAttribute method to create and populate elements too. When it comes to classes in particular, 
+            I can see a lot of use for the className and classList methods. I’ll have to try using those next time I want 
+            to modify class structure of an element.
+        </p>
+        <p>
+            The classList() method seems particularly powerful. I had forgotten about toggling. I can see this being used 
+            a lot when doing dynamic css modifications or creating hooks for JavaScript in the future. It could even be 
+            useful for validation. The built-in returns seem very intuitive as well.
+        </p>
+        <p>
+            Didn’t Microsoft finally stop supporting IE? I hope it dies out soon, it’s only given headaches. A lot of the 
+            modern methods will never see compatibility with IE, so I guess its days are numbered. Maybe Microsoft will stop 
+            shipping it with their OS’s. 
+        </p>
+        <p>
+            The chapter was largly review, noteable things were taken down, but even most of that was review. I still don't see 
+            any advantage over my current methods of DOM Manipulation though.
+        </p>
+    </div>
+    <div class='container'>
+        <h2>Events</h2>
+        <p>
+            I set up an event listener for the ninja quiz in past activites so that it would work on a button click. It was my prefered
+            way of handeling a launch.
+        </p>
+        <p>
+            I never went that far into event listeners on the front end. I usually work on the server and send data as it’s required. 
+            As a result, my front-end code is pretty minimal and even a bit hacky at times. I was aware that you could assign event 
+            listeners on the back-end, but didn’t realize that it was the standard preference. I suppose I really am out of touch 
+            with front end development.
+        </p>
+        <p>
+            addEventListener() is the modern standard for applying event listeners. This makes the job fairly easy and intuitive. 
+            I can assign the element to a variable and use the addEventListener() method on it. Very useful.
+        </p>
+        <p>
+            The keydown, keyup and keypress are events that I’ve used to force user input to fit in a regex before, but never in 
+            vanilla JavaScript. For lack of time, I won’t try at the moment, but I would like to try to implement this strategy in 
+            an upcoming code. I find it interesting that the keypress has more to do with the character entered then the actual 
+            key itself. I suppose this would make key tracking an easy task, depending on what you’re doing with it that is.
+        </p>
+        <p>
+            Touch events are interesting, but I have a hard time seeing how they could be used when the default behavior of a web 
+            page seems to translate over fairly well as is. I suppose for custom events it would be useful and it was likely built 
+            in to facilitate the “native” performance anyway. Still, it makes me wonder how could you use touch events to do 
+            something practical.
+        </p>
+        <p>
+            At first, preventDefault() seemed like a “shoot yourself in the foot” function, and after I read on, it still does. 
+            With that being said, I can see how it would be useful in some rare situations where you really need a lot of customization 
+            over the page.
+        </p>
+        <p>
+            Capturing and Bubbling. In a nutshell, bubbling goes from the target event and rides all the back “up” to the 
+            document root. This will fire events going up along the way. Capturing goes in the opposite direction and goes “down” 
+            the dom tree until it hits the target event, firing off events from parent elements along the way. Because both can be 
+            useful, a third argument exists in addEventListener which is a Boolean value. If this is set to true, the event will be 
+            handled by capturing, if it is false, it will be handled by bubbling. Bubbling is the default behavior. Events can both 
+            capture and bubble, but you need to use the method twice to achieve this.
+        </p>
+        <p>
+            I'll update the ninja quiz in a second activity soon to use everything covered here.
         </p>
     </div>
     <footer>
