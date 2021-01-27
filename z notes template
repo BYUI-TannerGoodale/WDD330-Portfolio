@@ -3,17 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week  Notes</title>
-    <link rel="stylesheet" href="../normalize.css" />
-    <link rel="stylesheet" href="../main.css" />
+    <title>Week # Notes</title>
+    <link rel="stylesheet" href="../../../normalize.css" />
+    <link rel="stylesheet" href="../../../main.css" />
 </head>
 <body>
     <header>
-        <h1>Week  Notes</h1>
+        <h1>Week # Notes</h1>
     </header>
-    <div class="container">
-        <p></p>
-    </div>
+    <section class="container">
+        <h2>Chapter # | *****</h2>
+        <div class='container'>
+            <p>In this chapter, I'll record notes on,</p>
+            <ul>
+                <li>*****</li>
+                <li>*****</li>
+                <li>*****</li>
+                <li>*****</li>
+                <li>*****</li>
+                <li>*****</li>
+                <li>*****</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+        <h3>*****</h3>
+        <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+        <p class='question'>*****</p>
+    </section>
+    </section>
     <footer>
         <div class="container">
             <a href="../index.html">&#060 Go Back</a>

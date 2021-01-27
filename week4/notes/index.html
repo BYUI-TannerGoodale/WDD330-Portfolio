@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 Notes</title>
+    <link rel="stylesheet" href="../../../normalize.css" />
+    <link rel="stylesheet" href="../../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 4 Notes</h1>
+    </header>
+    <section class="container">
+        <h2>Chapter 8 | Forms</h2>
+        <div class='container'>
+            <p>In this chapter, I'll record notes on,</p>
+            <ul>
+                <li>Form controls</li>
+                <li>Accessing form elements</li>
+                <li>Form properties and methods</li>
+                <li>Form events</li>
+                <li>Submitting a form</li>
+                <li>Retrieving and changing values from a form</li>
+                <li>Form validation</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+            <h3>- Form controls</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What are form controls and how can they be used to make interacting with the user easier?</p>
+            <p>
+                Form controls are the interactive elements of a form that allow a user to input information or data. 
+                Form controls take on many different faces, such as text input boxes, text field inputs (which are very similar 
+                to text input boxes), radio buttons, checkboxes or anything along this variety.
+            </p>
+            <p>
+                Buttons are also form controls. The primary purpose of the button is to submit a form to the server, in most cases. 
+                Buttons are able to do this using event listeners, which usually direct the button where to send form data when pressed.
+            </p>
+            <p>
+                Normally, forms submit to the backed of the website. The backend would filter and validate the data being passed to 
+                it and would store it in a database for latter use. This practice is still very common, though it should be noted 
+                that another practice of validating on the front end prior to sending data to the backend is becoming common as well.
+                It should come as no surprise that JavaScript is often involved in this front-end validation process.
+            </p>
+            <p>
+                Let's set up an example form below,
+            </p>
+            <div class='container padd'>
+                <form class='flex' name='search' action='#'>
+                    <div class='form-group'>
+                    <label for="searchInput">Search for...</label>
+                    <input class="form-control" name='searchInput' id="searchInput">
+                    </div>
+                    <button class="btn flex-btn" type='submit'>Search</button>
+                </form>
+            </div>
+            <p>
+                Though not visible to the front end user (you), the form has a few things going for it. Attached to the search input is a 
+                label, you see it as “Search for…”. The label bonds to the input element via it’s id attribute. The label element also has 
+                a name attribute that helps define it in the DOM (to be discussed next) and also helps servers make sense of the 
+                from inputs. The part of the form you can type in is the form control and the button next to it is also a form control. 
+                These allow you to interact with the web page. Granted, this form only links back to this page. If you enter anything 
+                in search, you will see that input in the url of this page. It doesn’t go anywhere from here because this is a simple 
+                example form with no real functionality.
+            </p>
+            <p>
+                The url is handled by the form using the action attribute of the form tag. The action attribute is more or less the link 
+                for the form to use. You can also define if the form should POST or GET using the method attribute. POST is often used for 
+                sending data and GET used for getting data. This keeps in line with the RESTful standard.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Accessing Form Elements</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How can we access different form elements in JavaScript?</p>
+            <p>
+                The DOM allows a user to define id’s and classes to various elements, we can use the traditional JavaScript methods 
+                for hooking on to these things for any element in the DOM. It can be noted however, that an old method for accessing 
+                form elements exists and it remains very useful. Rather then trying to define the form elements by their id, you can 
+                simple do this, document.forms[n] or document.forms.form-name.
+            </p>
+            <p>
+                The document object has a forms property which contains a list of al the forms in the document. The forms can be refrenced 
+                to by their position in the document or by their name attribute. The name can be retrived via dot notation or square braket 
+                notation. This method is tied directly into JavaScript, making it very useful to this day. Along with form elements, you 
+                can also access the form's controls using the same type of syntax.
+            </p>
+            <p class="question">Can you chain the dot notation to get directly to a form's contol element?</p>
+            <p><code>let searchInput = document.forms.search.elements.searchInput</code></p>
+        </section>
+        <section class='container padd'>
+            <h3>- Form Properties and Methods</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What form properties and methods are there and how do they work?</p>
+            <p>
+                There aren’t that many form methods in JavaScript. Though custom functions and methods can be run on forms, 
+                built in methods are more limited and for that do exist, interactive html attributes can replace them in a 
+                more user-friendly way. The form methods are form.submit() and form.reset(). The submit action can be handled 
+                by applying type=”submit” to a for element (normally a button or input element) and the reset methods should 
+                be used sparingly if ever, as it can be bad for useability. 
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Form Events</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What form events are there and how do they work?</p>
+            <p>
+                Form events can be used to trigger other events in JavaScript and are tied directly into the language itself. 
+                The events include focus, blur and change, among others. In order to use these events in JavaScript, you will need to attach 
+                an event listener to them. What you choose to do when the event listener fires is up to you. The focus event 
+                is triggered when the cursor is active on the form field. The blur evet is fired when the user moves focus away 
+                from your form field. The change event goes off when the user has made a change to the form field and has moved 
+                away from it.
+            </p>
+            <p>
+                These events can be particularly useful for validation purposes. Say, for example, you wanted to check if a user’s 
+                input matches a regular expression. If it does after the change event is fired, you could make the event listener 
+                make the border color green. If it fails to pass the regular expression, you could make the border red and flash 
+                a warning. This is just one example of how the built-in events can be used.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Submiting a Form</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How does JavaScript catch form data before it gets submited?</p>
+            <p>
+                Submitting a form is handled by the submit method, which also has a built-in html handler (discussed above). 
+                Along side of the submit method, there is also a submit event. The way that JavaScript can intercept the form 
+                data before it gets to the server is to use an event listener watching for the submit event. You can validate 
+                data at this point or do whatever you want/need to reduce server load. At least, that would be the ideal situation 
+                for doing this.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Submiting a Form</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How does JavaScript catch form data before it gets submited?</p>
+            <p>
+                Submitting a form is handled by the submit method, which also has a built-in html handler (discussed above). 
+                Along side of the submit method, there is also a submit event. The way that JavaScript can intercept the form 
+                data before it gets to the server is to use an event listener watching for the submit event. You can validate 
+                data at this point or do whatever you want/need to reduce server load. At least, that would be the ideal situation 
+                for doing this.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Retrieving and Changing Values From a Form</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How do we change form values before they are sent to the server?</p>
+            <p>
+                Text input element objects have a value attribute that can be used by JavaScript to both read and alter the value 
+                in a text field.  We can hook onto the submit event or any event in the form and check against the value of a text 
+                input field. Other input fields also have value attributes, any that do can be modified accordingly. Alternatively, 
+                if the input does not have a value attribute, it will still contain some way of storing the user input. That too can 
+                be checked against and modified if needed. This is how you would validate data on the front end prior t sending it 
+                off to the server.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Form validation</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How can JavaScript be used to preform form validation?</p>
+            <p>
+                As discussed earlier in these notes, JavaScript from validation can be handled via event listeners in a variety of ways. 
+                The customization of form validation is limited largely by the built-in event listeners and the programmer’s 
+                imagination, so almost anything is possible. HTML5 also has built-in validation attributes that can be applied to 
+                any related form elements. These don’t have the best compatibility record as of this point, but can be safely used 
+                as another line of defense regardless. It’s important to note that front end validation is mainly to provide a user 
+                with helpful hints and not so much for web security. Server side validation handles the security aspect of a form, 
+                because a user can’t change the code on the server as easily as they can the JavaScript on the front end.
+            </p>
+        </section>
+    </section>
+    <hr>
+    <section class="container">
+        <h2>Chapter 12 | Object-Oriented Programming in JavaScript</h2>
+        <div class='container'>
+            <p>In this chapter, I'll record notes on,</p>
+            <p>Due to the length of the chapter, I will only take notes on highlights for myself and largly ignore review material.</p>
+            <ul>
+                <li>Constructor functions</li>
+                <li>Using classes in JavaScript</li>
+                <li>Prototypes</li>
+                <li>Public and private methods</li>
+                <li>Inheritance</li>
+                <li>Creating objects from objects</li>
+                <li>Adding methods to built-in objects</li>
+                <li>Mixins</li>
+                <li>Chaining functions</li>
+                <li>This and that</li>
+                <li>Borrowing methods from prototypes</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+            <h3>- Constructor functions</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How does JavaScript handle constructors?</p>
+            <p>
+                Contractors in JavaScript are functions that are used to define and create an object, the same as in other OOP 
+                languages. JavaScript allows a user to define a constructor as an external function or as built-in class method. 
+                I would prefer the built-in class method myself, as I’m more familiar with it coming from the likes of Java and C#.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Using classes in JavaScript</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How does JavaScript handle classes?</p>
+            <p>
+                JavaScript has classes as of ES6. These classes still use the prototypal constructs that JavaScript is biased around, 
+                but does so in the background. Along with classes came methods to handle classes, one such being the “instanceof” 
+                method, which returns a Boolean value dependent on the results of a check. You name your object and then see if it’s 
+                an instance of a certain class.
+            </p>
+            <p>
+                Objects maintain the constructor method upon creation, meaning if you forget the class contractor for some reason, you 
+                can always reference an existing object of the type you want to make and call its contractor function.
+            </p>
+            <p>
+                All classes in JavaScript have a prototype that can be modified to add properties and methods to a class. This is useful 
+                when you don’t have direct access to a class constructor to modify.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Prototypes</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What are prototypes in JavaScript?</p>
+            <p>
+                In a nutshell, prototypes are the basis that classes and constructor functions use to build objects. A property in 
+                the class is given and defined unique to every instance of the class. A property given in the prototype and defined 
+                in the prototype will be the same in every single instance of the class that uses said prototype. This makes properties 
+                that will always be the same very efficient in they are stored in the prototype as opposed to individual class instances.
+            </p>
+            <p>
+                <i>Never use arrays or objects as a default value in a prototype.</i>
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Public and private methods</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How are Public and Private methods handled in JavaScript?</p>
+            <p>
+                Public properties are declared using the this.var = var syntax and private ones are declared defining the variable 
+                directly (let _color = color;). Once set, it can only be modified via getters and setters as in other languages. 
+                The big advantage of private properties is that you can enforce type declarations for variables. For example, use 
+                an if else check to see if the setter is being passed a valid typeof for the variable.
+            </p>
+            <code>If(typeof color === ‘string’){ return _color = color; } else { throw new Error(‘Color must be a string’);</code>
+        </section>
+        <section class='container padd'>
+            <h3>- Inheritance</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How does JavaScript handle inheritance?</p>
+            <p>
+                JavaScript uses the inheritance model used by other languages, extends and super are used in much the same way 
+                as they are in C# or Java. This allows you to make inherited classes or sub-classes. Polymorphism works as expected.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Adding Methods to Built-in Objects</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How do you add methods to built-in objects?</p>
+            <p>
+                Overriding the prototype of built-in objects to add methods is known as monkey-patching and, though powerful, 
+                is generally frowned upon in the JavaScript community. An example of monkey-patching would be adding methods 
+                to the Number object’s prototype to see if a number is even or odd. This could be useful, but also has a handful 
+                of drawbacks. If the monkey-patched method you added is later introduced in the language natively, you could 
+                get unexpected results on your web app.
+            </p>
+            <p>
+                If you plan on doing something like this, you should extend the class you want to add to and make your own version 
+                of it. This will allow your code to be future proofed and avoid collisions, however, you will have to use the new 
+                Object() syntax.
+            </p>
+            <p>
+                Property descriptors allow a programmer to set the meta values of a property, that is, to set writable, enumerable 
+                and configurable to true or false. The default behavior is to set all user defined properties to true, but when 
+                modifying the property descriptor, you can change those. In order to find the property descriptor of a property, 
+                you can use the Object.getOwnPropertyDescriptor(Object,'property') method. This shows you the property descriptor, 
+                but to build and set it at the same time, you will need to use the Object.defineProperty() method. Alternative to 
+                the value property in the property descriptor, you can have get() and set() methods, however, you can not have both.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Creating objects from objects</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How and why would you make objects from other objects?</p>
+            <p>
+                It is possible to avoid classes altogether and use the Object.create() method instead. This method takes an object 
+                (likely a literal you’ll make) and uses it as the prototype of the new object. This is another method to making objects. 
+                This process won’t be as fast as class definitions but you could add the init method to your class to make defining 
+                instances easier, just be sure to also define init and undefined inside the method body.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- Mixins</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What are Mixins?</p>
+            <p>
+                Mixins allow a user to add methods from one class to another without inheritance. This is done because JavaScript 
+                likes to try to look like other languages but then get really weird out of nowhere… The Object.assign(class1,classN) 
+                method is used to do this sick fusion of classes. This unholy marriage of classes comes with issues if one of them 
+                has an object or array as a property, that is, it is shallow or stored by reference. As a result change on one mutant 
+                class’s object or array property will affect the other one in the congromulated amalgamation. What’s more? If you 
+                want to make deep copies of the objects or arrays, you can do so by writing up a long and complex code block 
+                (shown below).
+            </p>
+            <code class='slim-code'>
+                function mixin(target,...objects) {
+                for (const object of objects) {   
+                if(typeof object === 'object') {
+                    for (const key of Object.keys(object)) {
+                        if (typeof object[key] === 'object') {
+                        target[key] = Array.isArray(object[key]) ? [] : {};
+                        mixin(target[key],object[key]);
+                        } else {
+                        Object.assign(target,object);  
+                        }
+                    }
+                    }
+                }
+                return target;
+            }
+            </code>
+            <p>Keep this function, as it is the ideal way to perform this horrid ceremony.</p>
+            <p>
+                Mixins can be useful when paired with the Object.create() method of object creation. We could, for example create 
+                an object and then use the mixin function on it to populate all of its properties quickly. This is a solid solution 
+                for those who wish to use the Object.create() method. Mixins can also be used to copy objects, especially when we 
+                do so using our mixin function. We can define a copy function as follows,
+            </p>
+            <code class='slim-code'>
+                function copy(target) {
+                const object =  Object.create(Object.getPrototypeOf(target));
+                mixin(object,target);
+                return object;
+            }
+            </code>
+            <p>
+                This copy function will make deep copies of any object passed to it.
+                This copy function can be used to make a factory function that drastically speeds up object creation.
+            </p>
+            <code class='slim-code'>
+                function createObject(...mixins) {
+                    const object = copy(Object);
+                    return mixin(object,...mixins);
+                }                
+            </code>
+            <p>
+                "Inheritance allows us to add functionality to objects by inheriting properties and methods from other objects. 
+                While this is useful, it can be undesirable to create a chain of inheritance ― sometimes we just want to add properties 
+                and methods without linking the two objects together. The mixin() function lets us encapsulate properties and methods 
+                in an object, then add them to other objects without the overhead of an inheritance chain being created."
+            </p>
+            <p>
+                "One way to think about the difference between prototypal inheritance and inheritance from mixin objects is to 
+                consider whether an objectissomething or whether ithassomething. For example, a tankis avehicle, so it might inherit 
+                from a Vehicle prototype. The tank alsohas agun, so this functionality could be added using a gun mixin object. 
+                This gives us extra flexibility, since other objects might also use a gun, but not be a vehicle, such as a soldier 
+                object, for example. The soldier object might inherit from a Human prototype and also have the gun mixin."
+            </p>
+            <span>- JavaScrip Novice to Ninja 2nd Edition</span>
+            <p>The above two quotes are the justifcation for mixins.</p>
+        </section>
+        <section class='container padd'>
+            <h3>- Other Notes</h3>
+            <p>Another quote from the book that seems relevat to object methods in general,</p>
+            <p>
+                "It’s worth keeping in mind that if a method lacks a meaningful return value, it might as well return this so 
+                that chaining is possible."
+            </p>
+            <p>
+                Methods can be borrowed from prototypes by being assigned to variables. This can be done by assigning a variable 
+                a call to an object’s method and then using the call method with another unrelated object to force the method to 
+                work with said object.
+            </p>
+            <p>This works much as expected for JavaScript.</p>
+        </section>
+    </section>
+    <hr>
+    <section class='container'>
+        <h2>Chapter 15 | Modern JavaScript (Modular JavaScript Section)</h2>
+        <section class="container padd">
+            <h3>- Modular JavaScript</h3>
+            <p>
+                Keep code loosely coupled and separate use cases into different modules. A module is in strict mode by default 
+                and cannot be taken out of strict mode. A module has its own global scope. This in a module will refer to undefined 
+                if used improperly. You can not use HTML styled comments in a module.
+            </p>
+            <p>
+                ES6 made modules a native part of the language. A module is essentially a JavaScript file that has the keyword 
+                “export” to define what will be made available from it.
+            </p>
+        </section>
+    </section>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+<script src="notes.js"></script>
+</body>
+</html>
