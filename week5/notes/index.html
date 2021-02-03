@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5 Notes</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 5 Notes</h1>
+    </header>
+    <section class="container">
+        <h2>Chapter 5 | Testing and Debugging</h2>
+        <div class='container'>
+            <p>In this chapter, I'll record notes on,</p>
+            <ul>
+                <li>Errors, exceptions, and warnings</li>
+                <li>The importance of testing and debugging</li>
+                <li>Strict mode</li>
+                <li>Debugging in the browser</li>
+                <li>Error objects</li>
+                <li>Throwing exceptions</li>
+                <li>Exception handling</li>
+                <li>Testing frameworks</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+            <h3>- Errors, Exceptions, and Warnings</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How does JavaScript handel errors?</p>
+            <p>
+                Errors can occur for a variety of reasons, most of which will be because of one three things, system errors, programmer 
+                errors and user errors. It can be debated that user errors are still programmer errors, as a programmer should set up 
+                safeguards and frameworks that prevent the user from being able to enter improper data.
+            </p>
+            <p>
+                A key component of errors are exceptions. Exceptions are a special return type that return an error message according 
+                to the conditions that created the error. Exceptions also return stack traces, which essentially track where the error 
+                came from and the probable cause of it.
+            </p>
+            <p>
+                Warnings are akin to errors, though they don’t cause a program to crash. Most browsers will alert you to a warning and 
+                point it out, but not all. Warnings can be more destructive than errors because they don’t stop code execution. Your 
+                program could continue to operate with incorrect data and though it may appear to work, can produce fatal logic errors.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>- The importance of testing and debugging & Strict Mode</h3>
+            <p class="question">What are some reasons to test and debug code?</p>
+            <p>
+                JavaScript used to handle errors by letting them silently die in the background, this of course caused errors to become 
+                malignant timebombs that were hard to track down. Sense ECMAScript 3, JavaScript attempts to alert a developer to errors, 
+                though it is not always successful. It is important to create “loud” failures in the development phase by setting up 
+                systems to catch and report errors as soon as they occur. This makes debugging easier in the development process. 
+                When in the production stage, it is important to let the program handle errors “gracefully”, so as not to impede 
+                on user experience but also not hide the error.
+            </p>
+            <p>
+                ECMAScript 6 introduced strict mode, which creates an environment that’s much less forgiving to sloppy code and treats 
+                warnings as errors. Strict mode can be activated by placing the string ‘use strict’ at the top of your JavaScript file. 
+                It can also be used inline on functions. When using a module, strict mode is on by default. A good practice is to place 
+                all your code in a self-calling function that starts by being defined as strict.
+            </p>
+            <code>
+                (function() {
+                'use strict';
+                // All your code would go inside this function
+                }());
+            </code>
+            <p><i>
+                This reminds me of the “Main” method in Java and C#. It launches itself, it’s static by definition, it’s also 
+                technically public and returns void of itself. Obviously it’s not the same thing, but if this is considered good 
+                practice, I can’t help but feel like JavaScript is evolving to become more like a traditional OOP language.
+            </i></p>
+            <p>
+                Linting tools go a step above strict mode and enforce certain codding practices, including the style of code in some 
+                cases. Linting tools can be added as a plugin to a text editor, found online or even installed on a development machine 
+                via node package manager. Linting tools can be useful for teams, but they can also be a bit opinionated and don’t 
+                guarantee that code will be error free. In general, your choice to use a linting tool depends on how tight of a 
+                standard you want your code to hold to.
+            </p>
+            <p>
+                When developing with error handling in mind, it’s also important to consider potential system errors such as browser 
+                support of certain APIs and a user’s browser version. APIs are fantastic tools, but not every user will have compatible 
+                browsers. In this case, it is important to add checks into your code to ensure that the API you want to reference is 
+                supported by the user’s browser. A simple “if” statement is capable of checking for the API.
+            </p>
+            <p class="question">
+                What would I do if a feature I implemented required the use of an API? Would I simply tell the user to update their 
+                browser to use my web app, or would I have to create a workaround somehow? I suppose the solution will vary depending 
+                on what needs to be done, a simple “please update your browser” message might be the final solution if all else fails 
+                though.
+            </p>
+        </section>
+        <section class="container padd">
+            <h3>- Debugging in the browser</h3>
+            <p class="question">How can the browser be used to debug code?</p>
+            <p>
+                In the old days of yore, JavaScript could be debugged in the browser using the alert method inline with the code. 
+                Then the console.log method came about which worked in a very similar way. Most modern browsers now’a days have built 
+                in debugging APIs that let you set breakpoints and track stack flow and variable values with relative ease. This is 
+                the preferred method, as the older methods required inline code to debug. You can still use the debugger keyword in 
+                your code, though most consoles can add a breakpoint using a GUI as well.
+            </p>
+        </section>
+        <section class="container padd">
+            <h3>- Error Objects</h3>
+            <p class="question">An error is an Object? Can we treat it like one?</p>
+            <p>
+                Errors are Objects in JavaScript. They can be treated like any other object and have built in methods and properties 
+                as well. Each browser handles the properties a bit differently. The only consistently safe ones to use are “name” 
+                (which defined the error object to be created, for example a RangeError or SyntaxError), “message” which defines the 
+                error message to be sent and then “stack” which is non-standard and should not be used in production sites. 
+            </p>
+        </section>
+        <section class="container padd">
+            <h3>- Throwing exceptions & Exception Handling</h3>
+            <p class="question">How do we throw exceptions in JavaScript?</p>
+            <p>
+                Exception handling is a core component of any programming language. It allows a programmer to throw an error that 
+                would otherwise be ignored by the JavaScript engine. The throw keyword is used to throw exceptions. Any JavaScript 
+                expression can be thrown, though ideally a programmer will throw an error as these can be caught and delt with 
+                appropriately.
+            </p>
+            <p>
+                Companions to the throw keyword, there are the “try”, “catch” and “finally” keywords. The Try-Catch behavior of 
+                JavaScript essentially mirrors that of other languages. The code you want to try against is placed in the try block. 
+                If an error is thrown in the try block, that error is sent to the catch block as a parameter. You can then reference 
+                the various parts of the error object and handle the error as you wish in the catch block. It is then possible to use 
+                the finally block, which will execute no matter what after the try and catch blocks, even if no error is thrown.
+            </p>
+        </section>
+        <section class="container padd">
+            <h3>- Testing Frameworks</h3>
+            <p class="question">What can JavaScript testing frameworks do for you?</p>
+            <p>
+                Jest is a popular JavaScript testing framework that was developed by Facebook. It can be installed via node package 
+                manager and has many built in functions and methods that aid in producing meaningful tests. In order to use it, you 
+                want to create testing files that you store your code to be tested in. You then reference that code (often a function 
+                or method) in the testing environment. You start by declaring a test and passing a string explaining the goal of the 
+                test. You then pass an anonymous function that calls the expect function which you pass your function to be tested 
+                into. This creates an expectation object that has built in methods called matchers, which allow you to evaluate 
+                expected results.
+            </p>
+            <p>
+                To preform one of these testes, you must navigate to the folder where the name.test.js file is (or files, as the case 
+                may be) and then run the Jest -c {} command in the cmd. The -c {} is the configuration parameter in case you need to 
+                adjust the framework’s behavior.
+            </p>
+        </section>
+    </section>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>

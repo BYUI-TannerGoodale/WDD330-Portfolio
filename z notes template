@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week # Notes</title>
-    <link rel="stylesheet" href="../../../normalize.css" />
-    <link rel="stylesheet" href="../../../main.css" />
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
 </head>
 <body>
     <header>
@@ -26,10 +26,13 @@
             </ul>
         </div>
         <section class='container padd'>
-        <h3>*****</h3>
-        <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
-        <p class='question'>*****</p>
-    </section>
+            <h3>*****</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>*****</p>
+            <p>
+                
+            </p>
+        </section>
     </section>
     <footer>
         <div class="container">
