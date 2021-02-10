@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+    <header>
+        <h1>Todos</h1>
+    </header>
+    <div class="cont">
+    <section>
+        <div class="cent outlined">
+            <ul>
+                <!--Fill with toDo/task objects generated from localstorage-->
+            </ul>
+            <div id="listFooter">
+                <span id="tasksLeft"></span>
+                <button id="allFilter">All</button>
+                <button id="activeFilter">Active</button>
+                <button id="compleatedFilter">Compleated</button>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="cent">
+            <input id="content">
+            <button class="btn flex-btn" id="submitToDo">+</button>
+        </div>
+    </section>
+    </div>
+<script src="main.js" type="module"></script>
+</body>
+</html>

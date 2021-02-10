@@ -1,0 +1,58 @@
+/* Styles for the ToDo list app */
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Functional rules */
+.completed{
+    text-decoration: line-through;
+}
+
+
+/* Main body format rules */
+header{
+    text-align: center;
+}
+
+.cont{
+    max-width: 18em;
+    margin: auto;
+}
+
+#listFooter{
+    display: flex;
+    justify-content: space-between;
+}
+
+#content{
+    width: 231px;
+    margin-right: 20px;
+}
+
+section{
+    margin-bottom: 1em;
+}
+
+/* List styles rules */
+ul{
+    padding: 0;
+    margin-top: 0;
+    list-style-type: none;
+    text-align: left;
+}
+
+ul li{
+    border-bottom: 1px solid black;
+}
+
+ul li div{
+    display: grid;
+    grid-template-columns: 13px 228.5px 25px;
+    grid-column-gap: 10px;
+}
+
+.outlined{
+    border: 1px solid black;
+    border-radius: 2px;
+}

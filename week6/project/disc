@@ -1,0 +1,81 @@
+UI actions
+- Show a list of tasks
+- Add a new task
+- Complete a task
+- Remove a task
+- Filter tasks (complete/incomplete)
+
+Data sources: localStorage
+
+todo: { id : timestamp, content: string, completed: bool }
+toDoList = [toDo];
+
+ToDo Object structure defined on line 10.
+
+Concept Version 1:
+A front end driven to-do list that uses localstorage as it's database.
+
+I will need to populate the list dynamically using utility(?) functions on load and after anything has been modified
+or after an event listener that impacts the list has been fired.
+
+It would make sense to have a render function that all the other ones will connect to, then simply call render
+on load and automatically after any relevant event is fired.
+
+I can only store strings in localstorage, I will need to convert the objects generated from a form into strings using
+JSON.stringify(), this will likely take place as a method in the ls.js file (local storage helpers).
+
+When a task is marked as complete, that should be handled via a bool value in the task object and the code should apply
+a class with a CSS connector to any task object with the completed bool value (true or false?).
+
+An "X" is on the end of every listed task, when clicked (or touched), an event will be fired that will remove the task object
+from localstorage and then call the render function, effectivly deleting the task.
+
+I need to have filters that can be clicked on the bottom of the view. These will be three diferent buttons or inputs that 
+have various event listeners tied to them that will sort the array of task/ToDo objects according to the boolean value of
+active or completed. One will call "All" that simply renders all task/ToDo Objects.
+
+
+Technical concepts:
+
+It seems evident that the render function will have to take an array of ToDo objects as an argument and then simply render out 
+that array. This will make the render function very portable.
+
+Functions that modify the list in any way will only do so. They will have to call another function to populate an array that will
+be passed to the render function.
+
+I will need a LoadLS function and a SaveLS function to make the code Dry (minimal typing of complex tasks).
+
+Reading the create to-do form without reloading the page can be handled by applying an event listener to the form's onsubmit attribute.
+The event function will get the values from the form and auto populate the timestamp. The compleated bool will always be false by defult.
+The function will create the object, load localstorage, parse localstorage (toDoList) into an array of objects again, then push the new
+to-do object into the array. After that, we will need to save the toDoList back into localstorage using the SaveLS() function and then 
+pass the new toDoList to the render function.
+
+ToDos.js will have to hold a class definition for toDo/task Objects. The consrutor can be called in the AddToDo function which will be
+fired on the submit event in the form.
+
+Function order is as such,
+- Render(Arr) // Load all localstorage on init load. // Not sure where to put it, likely in utilities.js and called in ToDos.js.
+- *modify() // Possible list: DeleteToDo(ToDo), MarkComplete(ToDo), AddToDo() // Likely in utilities.js
+- LoadLS() // Will load from localstorage and use JSON.parse(localstorage) to make it into a useable object list again. // Likely in ls.js // Will be called in modify functions and in preRender functions.
+- SaveLS(toDoList) // Will save to localstorage using JSON.stringify(objectList). // Likely in ls.js // Will be called in modify functions.
+- *preRender(Arguments: localstorage; return: Arr, Call: Render(Arr)) // Possible list: PostDelete(Arguments: localstorage; return: Arr, Call: Render(Arr)), PostMarked(Arguments: localstorage; return: Arr, Call: Render(Arr)), PostAdd(Arguments: localstorage; return: Arr, Call: Render(Arr)), LoadAll(Arguments: localstorage; return: Arr, Call: Render(Arr)), LoadCompleted(Arguments: localstorage; return: Arr, Call: Render(Arr)), LoadActive(Arguments: localstorage; return: Arr, Call: Render(Arr)) // Likely in utilities.js
+- Render(Arr)
+
+Funtion list (non-comprehensive):
+
+loadToDoList()
+
+saveToLS()
+
+addToDo()
+
+render()
+
+checkBoxStatus()
+
+findToDo()
+
+markComplete()
+
+unMarkComplete()
