@@ -73,7 +73,7 @@
                 The Fetch API provides a global fetch() method that has one mandatory argument, the URL of the website you want to fetch
                 from.
             </p>
-            <code>
+            <code class="slim-code">
                 fetch('https://example.com/data')
                 .then( // code that handles the response )
                 .catch( // code that runs if the server returns an error )
@@ -86,7 +86,7 @@
                 will fail and the catch will be fired. No response object will be returned in this case. OK is only set to true when
                 a server sends a response and the status code is between 200 and 299.
             </p>
-            <code>
+            <code class="slim-code">
                 fetch('https://example.com/data')
                 .then((response) => {
                     // If the response code is between 200 and 299, ok will be set to true.
@@ -119,7 +119,7 @@
                 There are many different data types that can be returned with the Fetch API, but the most common is JSON.
                 JSON is useful because it is native to JavaScript and can be easily manipulated once resolved into an object.
             </p>
-            <code>
+            <code class="slim-code">
                 fetch(url)
                 .then( response => response.json() ); // transforms the JSON data into a JavaScript object
                 .then( data => console.log(Object.entries(data)) )
@@ -130,7 +130,7 @@
                 Request objects allow you to get more fine tuned power over how the Fetch API will request data from the url.
                 They can be made using a request constructor function. An example will be shown below.
             </p>
-            <code>
+            <code class="slim-code">
                 const request = new Request('https://example.com/data', {
                     method: 'GET',
                     mode: 'cors',
@@ -141,7 +141,7 @@
             <p>
                 Alternatively, you can make a request literal by supplying the same information directly in the fetch methods parentheses.
             </p>
-            <code>
+            <code class="slim-code">
                 fetch('https://example.com/data', {
                     method: 'GET',
                     mode: 'cors',
