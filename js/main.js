@@ -34,8 +34,8 @@ const links = [
 //Pull ol from document object and populate it with il elements using the links array as the data source
 
 (()=>{
-    const directory = document.getElementById("directory");
-    
+    let directory = document.getElementById("directory");
+
     links.forEach(link => {
         let li = document.createElement("li");
         let a = document.createElement("a");
