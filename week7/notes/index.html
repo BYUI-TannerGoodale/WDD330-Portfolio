@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7 Notes</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 7 Notes</h1>
+    </header>
+    <section class="container">
+        <h2>Chapter 11 | Further Functions</h2>
+        <div class='container'>
+            <p>Focus was placed on activities in this chapter. Please see the activities section.</p>
+        </div>
+    </section>
+    <section class="container">
+        <h2>Chapter 13 | Ajax</h2>
+        <div class='container'>
+            <p>In this chapter, I will cover,</p>
+            <ul>
+                <li>Clients and servers</li>
+                <li>A brief history of Ajax</li>
+                <li>Communicating with the server using the Fetch API</li>
+                <li>Receiving data with Ajax</li>
+                <li>Sending data with Ajax</li>
+                <li>Form data</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+            <h3>Clients and servers</h3>
+            <p class="question">How do clients and servers interact with each other?</p>
+            <p>
+                Traditional web apps have a client communicate with an external server and the server send information to the client
+                depending on what was requested. This pattern is handled via routing on a server and often includes a data layer handled
+                by a database. Each request for data would require the page to reload in order for the server data to render on the 
+                client side. This method is still commonly in use and is the underlying backbone of backend web development.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>A brief history of Ajax</h3>
+            <p class="question">What is Ajax and where did it come from?</p>
+            <p>
+                Ajax is a JavaScript method that allows client devices to request server data and dynamically change a part of the website
+                using that data without reloading the page. Ajax largely changed the way many web apps would behave, making them dynamic
+                in nature rather than static.
+            </p>
+            <p>
+                Ajax, or the early form of it, started back in 1999 with Microsoft's XMLHTTP ActiveX control on internet explorer 5.
+                It's funny that IE would be the browser to change the world, at least from our prospective today. Back then, IE was 
+                one of the best browsers available. Asynchronous loading gained a lot more attention in 2004 and 2005 with Google's 
+                Gmail and Google Maps. These simple web applications were revolutionary for their time, as they didn't refresh the page
+                when getting new data. This was more reminiscent of the desktop applications of days yonder past.
+            </p>
+            <p>
+                The phrase Ajax would be coined in 2005 by Jesse James Garrett, who wrote about Google's use of the technology.
+                Ajax is an acronym for Asynchronous JavaScript XML. XML is not commonly used anymore, as JSON took over as the data
+                transfer protocol standard. The original vehicle for this type of request, the XMLHttpRequest object.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>Communicating with the server using the Fetch API</h3>
+            <p class="question">What is the Fetch API and how does it differ from the XMLHttpRequest Object?</p>
+            <p>
+                The Fetch API is a living standard for Ajax protocol now days. It has almost replaced the XMLHttpRequest Object
+                completely, though rare situations might call for using the older method. The Fetch API uses promises to avoid 
+                callback hell and also streamlines a number of common tasks from the older method.
+            </p>
+            <p>
+                The Fetch API provides a global fetch() method that has one mandatory argument, the URL of the website you want to fetch
+                from.
+            </p>
+            <code>
+                fetch('https://example.com/data')
+                .then( // code that handles the response )
+                .catch( // code that runs if the server returns an error )
+            </code>
+            <p>
+                The Fetch API introduced the response interface which essentially returns a response object when the promise is fulfilled.
+                This response object has a number of its own properties that can indicate the nature of the response. This is important
+                because so long as the Fetch promise receives any feedback from the requested server, it says that it's OK.
+                The OK property is true when a response is successful. If there is no communication with the server, then the response 
+                will fail and the catch will be fired. No response object will be returned in this case. OK is only set to true when
+                a server sends a response and the status code is between 200 and 299.
+            </p>
+            <code>
+                fetch('https://example.com/data')
+                .then((response) => {
+                    // If the response code is between 200 and 299, ok will be set to true.
+                    if(response.ok) {
+                        return response;
+                    }
+                    // This code would run if ok was not set to true.
+                    throw Error(response.statusText);
+                })
+                .then( response => // do something with response )
+                .catch( error => console.log('There was an error!') )
+            </code>
+            <p><i>
+                Some other properties of the Response object are:
+                <br>
+                headers – A Headers object (see later section) containing any headers associated with the response
+                url – A string containing the URL of response
+                redirected – A boolean value that specifies if the response is the result of a redirect
+                type – A string value of 'basic', 'cors', 'error' or 'opaque'. A value of 'basic' is used for a response from the 
+                same domain. A value of 'cors' means the data was received from a valid cross-origin request from a different domain. 
+                A value of 'opaque' is used for a response received from 'no-cors' request from another domain, which means access 
+                to the data will be severely restricted. A value of 'error' is used when a network error occurs.
+                <br>
+                The response object also contains a number of methods that return promises that can then be chained together.
+            </i></p>
+            <p>
+                When dealing with the Fetch API, many online resources can provide a comprehensive list of properties and methods.
+            </p>
+            <p>
+                There are many different data types that can be returned with the Fetch API, but the most common is JSON.
+                JSON is useful because it is native to JavaScript and can be easily manipulated once resolved into an object.
+            </p>
+            <code>
+                fetch(url)
+                .then( response => response.json() ); // transforms the JSON data into a JavaScript object
+                .then( data => console.log(Object.entries(data)) )
+                .catch( error => console.log('There was an error: ', error))
+            </code>
+            <p>
+                Along with specifying, retrieving (and even making) response objects, you can also work with request objects.
+                Request objects allow you to get more fine tuned power over how the Fetch API will request data from the url.
+                They can be made using a request constructor function. An example will be shown below.
+            </p>
+            <code>
+                const request = new Request('https://example.com/data', {
+                    method: 'GET',
+                    mode: 'cors',
+                    redirect: 'follow',
+                    cache: 'no-cache'
+                });
+            </code>
+            <p>
+                Alternatively, you can make a request literal by supplying the same information directly in the fetch methods parentheses.
+            </p>
+            <code>
+                fetch('https://example.com/data', {
+                    method: 'GET',
+                    mode: 'cors',
+                    redirect: 'follow',
+                    cache: 'no-cache'
+                })
+                .then( // do something with the response )
+                .catch( // handle any errors)
+            </code>
+        </section>
+        <section class='container padd'>
+            <h3>Receiving Information</h3>
+            <p class="question">How do we receive and use information with the Fetch API?</p>
+            <p>
+                Being able to receive information from an external server asynchronously is at the heart of Ajax. After all, you can't
+                update a website with no data. Well, you can, but it wont be good. To really see the power of Ajax, we will have to go to
+                this <a href="../activities/ch13/ajax.html">activity page</a>.
+            </p>
+        </section>
+        <section class='container padd'>
+            <h3>Sending Information and Form Data</h3>
+            <p class="question">What can you send to an API server?</p>
+            <p>
+                I've long had interest in creating a "server-less" web app that would run on the front end and use Ajax to send and
+                retrieve data to and from a database server (probably through an external API server, so not truly server-less). this
+                would include login functionality as well as business logic handling, all using Ajax and a remote server/database.
+                I don't know if this is possible at the level described, hopefully the reading here will clarify this.
+            </p>
+            <p>
+                After reading a few paragraphs in, I can see that my goal is absolutely possible.
+            </p>
+            <p>
+                <a href="../activities/ch13/todo.html">This link</a> will lead to the activity the uses fake APIs to simulate the 
+                process. The comments in source code also discuss FormData and it's uses.
+            </p>
+        </section>
+    </section>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>
