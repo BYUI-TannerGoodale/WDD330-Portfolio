@@ -1,0 +1,136 @@
+Project
+
+Goals, 
+- Add a comments section to the hikes list and individual hike profiles.
+- Display all comments on view when looking at hike list.
+- Display comments that relate to a hike when looking at it's profile.
+- Be able to add a comment to a hike in it's profile view.
+
+Catches,
+- You cannot add a review on the hikes list view, don't even show the inputs to do so.
+- You are using localStorage to hold data, you will store comments in an array that will be "stringified" (using JSON.stringify()).
+- You will complete these tasks in an object oriented paradigm using modules.
+
+Approach,
+- Start by creating a Comments class.
+    - The constructor function will give the class a property of "type" that will be used as the key in localStorage.
+        - "Type" must be a string.
+    - The constructor class should have a comments property that pulls all comments that have the "this.type" key from localStorage.
+        - this.comments = JSON.parse(localStorage.getItem(this.type)) || [];
+            - If nothing exists in localStorage, we should assign a blank array for this property.
+
+    - The Comments class needs to do these things,
+        - Handle adding a new comment.
+        - Handle posting comments to the view.
+    
+    - Here is a possible method list and possible code examples
+
+        - newComment(locationName, comment){
+            // Form our comment object
+            const newComment = {
+            name: locationName,
+            date: new Date(),
+            content: comment
+            };
+            // Once comment is created, add it to the comments array.
+            this.Comments.push(newComment);
+            // Save updated array into localStorage
+            localStorage.setItem(this.type, JSON.stringify(this.comments));
+        }
+
+        - getComments(query){ 
+            // getComments will either return all comments for the object instance this.type, 
+            // or filter by type and name by using a query object.
+            // The query object will likely look like this, "let query = {type: this.comments.type, name: hikeName};".
+            // The query object could be made in the Hikes class and passed as a argument to a Comments class's method.
+
+            let parent = document.getElementById("comment-section");
+            parent.innerHTML = ""; // When the method is called, clear the list so you don't have dupped comments.
+            if(query === null){
+                this.Comments.forEach(comment => {
+                    parent.appendChild(renderComment(comment)); // We will need to make a function to handle rendering of comments.
+                });
+            } else {
+            filterComments(query);
+            }
+        }
+    
+    - Here is a list of external functions that can be made to help render elements. This can be put into a separate module in the future.
+
+        - function filterComments(query){
+            let parent = document.getElementById("comment-section"); // We will have to redefine parent
+            let type = query.type;
+            let name = query.name;
+            let comments = []; // For the filtered comments.
+            if(JSON.parse(localStorage.getItem(type))){
+                comments = JSON.parse(localStorage.getItem(type)).filter(c => c.name == name); // Filter out to find the hike name. We are only returning relevant comments.
+            }
+            comments.forEach(comment => {
+                parent.appendChild(renderComment(comment)); // The render function will be very important.
+            });
+        }
+
+        - function renderComment(comment){
+            let div = document.createElement("div");
+            let dateString = comment.date.toString().substr(0, 10); // Do this so you don't have type errors
+            div.className = "commentBlock";
+            div.dataset.id = comment.date; // Do this so you can reference exact comments in the future.
+            div.innerHTML = `
+            <span>Review for ${comment.name}</span>
+            <span>given on ${dateString}</span>
+            <p>- ${comment.content}</p>
+            `;
+            return div;
+        }
+    
+- Modify the Hikes class to include the Comments class and implement it's methods.
+
+    - We need to add a Comments instance to the Hikes constructor function
+
+        -export default class Hikes {
+            constructor(elementId) {
+            this.parentElement = document.getElementById(elementId);
+            // we need a back button to return back to the list. This will build it and hide it. When we need it we just need to remove the 'hidden' class
+            this.backButton = this.buildBackButton();
+            this.comments = new Comments("hike"); // Add the "hike" string to assign type to comments, this will be used as the localStorage key.
+            }
+        ...
+
+    - We will need to alter the showHikeList and showOneHike methods, as these control rendering and view creation in the end.
+
+        - For showHikeList
+            - We will need to inject our getComments method,
+                - this.comments.getComments(null);
+            - We should also handle hiding our add comment interface
+                - document.getElementById("form").className = "hidden";
+
+        - For showOneHike
+            - This one will be more involved.
+            - We need to make the input form visible again.
+                - document.getElementById("form").className = "form";
+                    - This is a hacky way of handling this.
+            - We will need to define our query, this hike method already defines the name, so let just pass that.
+                - let query = {type: this.comments.type, name: hikeName};
+            - We then need to use our Comment object's getComments method.
+                - this.comments.getComments(query);
+            - We should define our comment inputs and submit button, then add an event listener to our button.
+                - let commentInput = document.getElementById("comment-content");
+                  let submitBtn = document.getElementById("submit-comment");
+                  submitBtn.onclick = () => {
+                  this.comments.newComment(hikeName, commentInput.value);
+                  this.comments.getComments(query);
+                  commentInput.value = "";
+                };
+        
+- Alter the index.html file to have new elements for our comments to work with
+
+    -   We would add the following after main to fit our program.
+        <hr>
+        <h3 class="comments">Comments Section</h3>
+        <div id="form">
+        <textarea id="comment-content" placeholder="Describe your expirence here..."></textarea>
+        <button id="submit-comment" >Add Comment</button>
+        </div>
+        <section id="comment-section">
+        <!-- build comment section here via JS -->
+        </section>
