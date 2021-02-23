@@ -1,0 +1,26 @@
+/* Styles for canvas playground */
+
+/* Make canvas border visible */
+canvas{
+    border: solid 1px black;
+    transform: translate(20px, 20px);
+}
+
+#c3{
+    transform: rotate(-45deg) translate(-300px, 100px);
+}
+
+#c2{
+    position: relative;
+    left: 300px;
+    bottom: -5em;
+    transition: transform 500ms 50ms;
+}
+
+#c2:hover{
+    transform: rotate(26deg) scale(1.2);
+}
+
+.hidden{
+    display: none;
+}
