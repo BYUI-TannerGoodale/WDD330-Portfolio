@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9 Notes</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+<main>
+    <header>
+        <h1>Week 9 Notes</h1>
+    </header>
+    <section class="container">
+        <h2>Chapter 9 | The Window Object</h2>
+        <div class='container'>
+            <p>In this chapter, I'll record notes on,</p>
+            <ul>
+                <li>The Browser Object Model</li>
+                <li>Finding out browser information</li>
+                <li>Browser history</li>
+                <li>Controlling windows</li>
+                <li>Cookies</li>
+            </ul>
+        </div>
+        <hr>
+        <section class='container padd'>
+            <h3>The Browser Object Model</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What is the Browser Object Model?</p>
+            <p>
+                The Browser Object Model or BOM is a group of properties and methods that exist in the window object (of which every 
+                browser window, tab, popup, frame and iframe have). The window object is only relevant in the web browser environment.
+                For example, it would do you no good on a server using node.js. The BOM can be used to find out which browser a user 
+                is using (although this isn't very reliable apparently). It can also be used to find the dimensions of a users screen, 
+                to track which pages a user has visited and even make glorious popups which ruin everyone's day.
+            </p>
+            <p>
+                It can be easy to think of the BOM as the window object itself in a lot of ways, but the two aren't inherently the 
+                same, just two parts of one whole. The window object is the more interactive end for developers to work with. For 
+                example, the practice of making global variables can be done by assigning properties to the window object. This can be 
+                done explicitly or in a shorthand literal.
+            </p>
+            <code>
+                window.x = 6 // Explicit
+            </code>
+            <code>
+                x = 6 // Literal when done in global scope
+            </code>
+        </section>
+        <br>
+        <hr>
+        <section class='container padd'>
+            <h3>Finding out browser information</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What sort of information does the window object contain? How do we access it?</p>
+            <p>
+                In days now passed, mainly in part to modern standards, developers were able to find out which browser a user was surfing
+                the web on by assessing the window.navigator.userAgent properties. navigator is an object that is stored inside of the
+                window object. It's userAgent property returns a string that describes the browser being used. These can be spoofed by
+                a client and also prove hard to read because of old standards, so it's not the most reliable method anymore.
+            </p>
+            <p class="question">How would we find out which browser a user is using now days?</p>
+            <p>
+                There is a method to finding the current hyper-reference (or url) in the window object as well. window.location.href will
+                return a string representation of the current href or url. One would think that location would have more to do with 
+                geolocation, but such is not the case. It is the location of the window object in reference to the wider web. The 
+                location property can also say what standard is being used for data transfer (https, http, pop2, ftp etc...). There is
+                also a host method and hostname method. Both will return the domain root of a url with the exception of host which 
+                will also return the port number (unless it is the default port 80). As you could imagine, there is a port method and 
+                pathname method as well that do exactly what you would think they do at this rate.
+            </p>
+            <p>
+                The location object is the primary means of finding urls dynamically. The properties mentioned above are read/write,
+                meaning you can change them in the code. Other properties exist as well, including search, hash and origin. The search
+                property will return a string that starts with a “?” followed by the query string parameters, or a empty string if no 
+                parameters exist. The hash property will return a string that starts with a "#" followed by the fragment identifier or
+                a blank string if there is no fragment identifier. The origin property will return the protocol and domain strings, 
+                but it is read only.
+            </p>
+            <p>
+                The location object also has a number of self explanatory methods. reload(), assign(), replace() and toString().
+                reload() will force a server side reload, not a reload from cache. assign() will load another page when given it's url.
+                replace() will also load another page, but not keep a reference to the old one. toString() will return a string of the 
+                whole url.
+            </p>
+        </section>
+        <br>
+        <hr>
+        <section class='container padd'>
+            <h3>Browser History</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'></p>
+            <p>
+                The window object has a history object sorted in it as well. It keeps a record of the pages visited before ending 
+                up on the current page. window.history can be used by calling it's various methods or the length property if you
+                just want to know how many pages they visited. The methods include go() (which requires a number as an argument), 
+                forward() and back(). Don't confuse the window.history object with the new HTML5 history API.
+            </p>
+        </section>
+        <br>
+        <hr>
+        <section class='container padd'>
+            <h3>Controlling windows</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>Is this useful in modern web development?</p>
+            <p>
+                The window object has a few things up it's sleeves, mainly methods at this point though. One interesting method is the 
+                window.open() method which allows you to open a small window to a given url. This can also be stored in a variable, 
+                making it easy to manipulate. Assuming you have a reference to the window object, you can also use the close() method.
+                I don't have to explain that one. There are a few other methods as well, but these are from a bygone era where popups 
+                would hunt you down. They should be avoided now days.
+            </p>
+            <p>
+                The window object contains a screen object as well. The screen object has useful information about a client's screen, 
+                such as screen size and the far less useful colorDepth property. Ok, so it seems kind of useless, but screen size is
+                important when working on mobile devices. The properties to view height and width are screen.height and screen.width.
+                There is also a screen.availWidth and screen.availHight which measure width and height minus OS take-up.
+            </p>
+            <p>
+                <i>
+                "The Screen object has more uses for mobile devices. It also allows you to do things like turn off the device’s screen,
+                 detect a change in its orientation or lock it in a specific orientation."<br>
+                 - JavaScript Novice to Ninja 2nd Edition.
+                </i>
+            </p>
+        </section>
+        <br>
+        <hr>
+        <section class='container padd'>
+            <h3>Cookies</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How do cookies work in JavaScript?</p>
+            <p>
+                Cookies are used to store "state" across the web. In order to make a cookie in JavaScript, you can use the cookie jar.
+                document.cookie will create a cookie. You just assign it a string with a key value pair and your good to go.
+            </p>
+            <code>document.cookie = "signedIn=true"</code>
+            <p>
+                In order to reassign a cookie to a different value, you simply call the document.cookie property again and rewrite the 
+                name value pair, using the same name but a different value.
+            </p>
+            <code>document.cookie = "signedIn=false"</code>
+            <p>
+                To see what's in the cookie jar, simply call the document.cookie method. You can use the split method on the cookie
+                property to creak it into an array of name value pairs and a for of loop to iterate through it.
+            </p>
+            <p>
+                There are a lot of moving parts to JavaScript's cookie handling and a modern library might be more intuitive to use.
+                Cookies.js or jsCookie are good options to use.
+            </p>
+        </section>
+    </section>
+    <br>
+    <hr>
+    <section class="container">
+        <h2>Chapter 14 | HTML5 APIs</h2>
+        <div class='container'>
+            <p>In this chapter, I'll record notes on,</p>
+            <ul>
+                <li>The development of HTML5 and the JavaScript APIs</li>
+                <li>The data- attribute</li>
+                <li>HTML5 APIs―local storage, geolocation, web workers, and multimedia</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+            <h3>The development of HTML5 and the JavaScript APIs</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What are HTML5 APIs?</p>
+            <p>
+                HTML5 is a living standard and will be continually updated in short bursts via modules. Many APIs or application
+                programming interfaces are being developed alongside the standard in order to make many tasks more intuitive.
+                Many APIs get adopted by the standard and become part of the language, such as the Fetch api. We will look into 
+                some examples of modern APIs.
+            </p>
+            <p>
+                To answer the question above, an API is a collection of methods that allow a developer to interact with a complex tool
+                or to simplify existing services. I have a hard time defining API beyond this.
+            </p>
+        </section>
+        <br>
+        <hr>
+        <section class='container padd'>
+            <h3>The data- attribute</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How can the data- attribute be used?</p>
+            <p>
+                The data- attribute can be used to insert data into a web page that JavaScript can interact with. I've used this before
+                on various projects. It's a useful way to store data securely. In terms of HTML, you can use the dataset property of 
+                any element to store data inside of it. For example, storing the unique ID of the element's parent object that was used
+                to generate the HTML. This would allow you to access that parent object by reference of it's ID stored in the HTML, 
+                even though the object is not a part of the page itself.
+            </p>
+        </section>
+        <br>
+        <hr>
+        <section class='container padd'>
+            <h3>HTML5 APIs―local storage, geolocation, web workers, and multimedia</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>What are the various HTML5 APIs and how can they be used?</p>
+            <p>
+                <i>
+                    The HTML5 specification contains a number of APIs that help to gain access to hardware, such as cameras, batteries, 
+                    geolocation, and the graphics card. Hardware evolves quickly, and APIs are frequently introduced to give developers 
+                    access, and control new features that appear in the latest devices.
+                    <br>
+                    - JavaScript Novice to Ninja 2nd Edition.
+                </i>
+            </p>
+            <p>
+                localStorage is one of the useful built in APIs in HTML5. It allows a developer to save information on a client's 
+                machine without using server resources. localStorage does not get passed to the server on a page call. It has a limit
+                around 5GB in most browsers.
+            </p>
+            <p>
+                Geolocation API is a powerful way of tracking user location. It must be accepted by the user. Geolocation is a 
+                property of the navigator object. It has a method of it's own called getCurrentPosition. The getCurrentPosition method
+                returns a position object to a specified callback function.
+            </p>
+            <code>
+                navigator.geolocation.getCurrentPosition(callback);
+            </code>
+            <p>
+                The position object has a cords property that has it's own latitude and longitude properties. The position object also 
+                has properties for speed, altitude, heading (which returns faced degrees from North) and timestamp.
+            </p>
+            <p>
+                <i>
+                    The position object also has properties that calculate the accuracy of the measurements. These can be useful, 
+                    as sometimes you only need to know the town or city users are in, while at other times you may need their exact 
+                    position. position.accuracy property returns the accuracy of the latitude and longitude properties in meters. 
+                    The lower the returned value, the more accurate the measurements are, as is the case for the 
+                    position.altitudeAccuracy property, which returns the accuracy of the altitude property in meters.
+                    <br>
+                    - JavaScript Novice to Ninja 2nd Edition.
+                </i>
+            </p>
+            <p>
+                Web workers are another powerful tool that allow JavaScript to work concurrently. What they do is take a JavaScript
+                file as an argument and then download that file. Once downloaded, the worker will be ready to execute. The file that is
+                passed to the worker will refer to the worker as self. The postMessage() method is used to communicate between the two
+                files (worker and main files). Once a worker has completed it's task, it can be closed using the terminate() method 
+                from the main script or the self.close() method in itself.
+            </p>
+            <p>
+                Workers are a bit confusing at first, so looking at online tutorials might be helpful to see how to use them.
+            </p>
+            <p>
+                Service workers can do the background functioning while being able to intercept network requests. This, in turn, allows
+                them to operate offline and create offline app experiences. These can be a useful tool for web apps that need to preform
+                complex tasks with or without an internet connection (so long as those tasks don't require a connection). I could see 
+                this being used to store location offline and then sync that location to a server once online. Though I don't know if
+                this is actually possible.
+            </p>
+            <p>
+                Take note of websockets. These can be useful for online/offline and push notifications. They allow for two way 
+                communication with a server. 
+            </p>
+            <p>
+                Notifications are another built in API now that are worth taking note of. Notifications work well because you don't
+                have to have a connection to a website to get a notification from it. They must be accepted by the client, however.
+            </p>
+            <code>
+                if(window.Notification) {
+                    Notification.requestPermission();
+                }
+            </code>
+            <p>
+                This little code snippet will return a promise with the permission property of Notification set to either 'granted' 
+                or 'denied'. If it has been granted, you can then create a new notification using a constructor function.
+            </p>
+            <code class='slim-code'>
+                if(window.Notification) {
+                    Notification.requestPermission()
+                    .then((permission) => {
+                        if(Notification.permission === 'granted') {
+                            const notification = new Notification('JavaScript: Novice to Ninja',{
+                                body: 'The new book from SitePoint',
+                                icon: 'sitepointlogo.png'
+                            });
+                            notification.addEventListener('click', () => {
+                                window.open('https://sitepoint.com')
+                                }, false);
+                        }
+                    });
+                }
+            </code>
+            <p>
+                The notification instance can have a number of different evet listeners attached to it, including click, show and close.
+                Click, for example, could be used to link a user to your website once clicked on. As shown above.
+            </p>
+            <p>
+
+            </p>
+        </section>
+        <br>
+        <hr>
+    </section>
+</main>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>
