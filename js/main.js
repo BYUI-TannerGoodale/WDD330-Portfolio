@@ -28,7 +28,10 @@ const links = [
     {
         label: "Week 7 Notes and Activities",
         url: "week7/index.html"
-    },
+    }
+];
+
+const linksBlock2 = [
     {
         label: "Week 8 Notes and Activities",
         url: "week8/index.html"
@@ -51,5 +54,16 @@ const links = [
         a.href = link.url;
         li.appendChild(a);
         directory.appendChild(li);
+    });
+
+    const directory2 = document.getElementById("directory2");
+
+    linksBlock2.forEach(link => {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.innerHTML = link.label;
+        a.href = link.url;
+        li.appendChild(a);
+        directory2.appendChild(li);
     });
 })();
