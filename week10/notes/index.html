@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week # Notes</title>
+    <link rel="stylesheet" href="../../normalize.css" />
+    <link rel="stylesheet" href="../../main.css" />
+</head>
+<body>
+    <header>
+        <h1>Week 10 Notes</h1>
+    </header>
+    <section class="container">
+        <h2>Validation and Fetch</h2>
+        <div class='container'>
+            <p>I'll record notes on Front End Validation and the Fetch API</p>
+            <ul>
+                <li>Front End Validation</li>
+                <li>Fetch API</li>
+            </ul>
+        </div>
+        <section class='container padd'>
+            <h3>Front End Validation</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How can I use front end validation to help make clean Fetch requests?</p>
+            <p>
+                A large portion of my final will include using the Fetch API to send and retrieve data. In essence, I am building a 
+                RESTful application without a real back end. I'm not totally sure how I can do this, but I will try to get an idea
+                of the structure I'll need to support it. Sense there is no backend, I will have to use strict front end validation.
+            </p>
+            <p>
+                I took a lot of interest in the Constraint Validation API. I'm thinking if I implement it along side the standard 
+                HTML5 validation, I can build something that holds it's own with relative ease. Still, it might be a good idea to 
+                build a separate module to handle "server side" validation. I'm not sure if that's possible, but I can try.
+            </p>
+            <p>
+                Now for the meat of it, front end validation is the first layer of protection for an application's most vulnerable
+                part, data access and entry. Forms can be an easy first choice for hackers to attack, as they already connect to 
+                the server's database handling. Front end validation enforces input types, making a user enter the proper data.
+                HTML5 has build in types that can be used and when paired with the Constraint Validation API, they can be quite useful.
+                This is a long cry from the old methods in raw JavaScript.
+            </p>
+
+        </section>
+        <section class='container padd'>
+            <h3>Front End Validation</h3>
+            <!-- Start by asking a question related to the topic, follow with answers to that question. Follow pattern. -->
+            <p class='question'>How can I use the Fetch API as the engine for a RESTful application?</p>
+            <p>
+                The Fetch API has almost replaced the old XMLHttpRequest object entirely. It is a powerful promise driven API that
+                can preform all RESTful methods. It can also be used asynchronously without much hassle. There are a lot of moving 
+                to the Fetch API, so I'll make an effort to break them down.
+            </p>
+            <p>
+                At it's core and by default, a Fetch request is used to retrieve data from an api. The Only essential argument is
+                the url you're attempting to connect to. The Fetch API will produce a promise that will either resolve or reject.
+                The promise will resolve in Fetch as long as connection to the API was achieved, even if it resulted in a 404 or 500
+                status code. One way to make sure your working with useful data is to check the response object's OK property, which
+                will return true if the response had a status code between 200-299. This would indicate that everything worked as
+                intended.
+            </p>
+            <code class="slim-code">
+                fetch("http://fakeapi.jsonparseronline.com/posts/1")
+                .then(res => res.json())
+                .then(data => console.log(data));
+            </code>
+            <p>This code snippet is run in a script tag. Open the console to take a look at the result.</p>
+            <script>
+                fetch("http://fakeapi.jsonparseronline.com/posts/1")
+                .then(res => res.json())
+                .then(data => console.log(data));
+
+                // Let's write it out in a way that lets me check the status code.
+
+                fetch("http://fakeapi.jsonparseronline.com/posts/2")
+                .then((res) => {
+                    if(res.ok){
+                        return res.json();
+                    }
+                })
+                .then((data)=>{
+                    localStorage.setItem('res', JSON.stringify(data));
+                })
+
+                // This method could be useful for my final
+
+                console.log(localStorage.getItem('res'));
+
+                // Not an ideal way to handle it, but it would work.
+                // Maybe using a module as a object db would would work better.
+            </script>
+            <p>
+                The Fetch API can be used for more then just simple data retrieval though, it can also preform POST, PUT and DELETE
+                tasks. This is where things get a bit more confusing. We have to use the second parameter offered by Fetch, the 
+                data object.
+            </p>
+            <script>
+                fetch("http://fakeapi.jsonparseronline.com/users", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        firstName: 'Tanner',
+                        lastName: 'Goodale',
+                        username: 'tgoodale',
+                        email: 'goodale.tanner@gmail.com'
+                    }),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then((res)=>{
+                    if(res.ok){
+                        return res.json();
+                    }
+                    console.log(res.headers)
+                })
+                .then((data)=>{
+                    // I would have to set the id of an employee to the created-at property, then save it to ls
+                    // This would be where I would call my localStorage helpers to create the image of being saved to a db.
+                    console.log(data); // For now, I will look at the response given.
+                    // If the response failed, I will need to handle for that.
+                    console.log(data.createdAt);
+                })
+                // The created at property would make a good id
+            </script>
+            <code class="slim-code">
+                fetch("http://fakeapi.jsonparseronline.com/users", {
+                    method: "POST",
+                    body: JSON.stringify({
+                        firstName: 'Tanner',
+                        lastName: 'Goodale',
+                        username: 'tgoodale',
+                        email: 'goodale.tanner@gmail.com'
+                    }),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then((res)=>{
+                    if(res.ok){
+                        return res.json();
+                    }
+                    console.log(res.headers)
+                })
+                .then((data)=>{
+                    console.log(data);
+                })
+            </code>
+        </section>
+    </section>
+    <footer>
+        <div class="container">
+            <a href="../index.html">&#060 Go Back</a>
+        </div>
+    </footer>
+</body>
+</html>
