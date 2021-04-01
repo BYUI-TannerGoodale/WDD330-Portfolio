@@ -1,0 +1,65 @@
+Opening,
+
+The user is greeted with the login view. This will always happen upon load.
+
+A user logs in, depending on who the user is, a different HOME view will populate.
+    Case: Owner
+        - A view will render that has general stats,
+            - Number of employees
+                - Active
+                - Inactive
+            - Number of Admins
+                - List of admin ID#s and names (each a link to their profile)
+        - Manage employees link/button will render (will change view to employee management view when clicked)
+        - Manage account settings link/button will render
+            - A change password form will render if this is clicked, nothing else planned for the moment
+    Case: Admin
+        - A view will render that has general admin stats,
+            - Admin ID# and name
+            - Number of employees excluding owner (maybe separate admins by department so it shows employees in department?)
+                - Active
+                - Inactive
+        - Manage employees link/button will render (will change view to employee management view when clicked)
+        - Manage account settings link/button will render
+            - A change password form will render if this is clicked, nothing else planned for the moment
+    Case: Employee
+        - A view will render that has this employee's stats
+        - Manage account settings link/button will render
+            - A change password form will render if this is clicked, nothing else planned for the moment
+
+If the owner or an admin clicks the Manage Employee button, a Management view will populate.
+    Case: Owner
+        - A link list of all employees, including admins, is rendered,
+            - Filtering by department will be optional
+            - Searching by ID or name will be optional
+            - When a link is pressed, that employee's info will be displayed in a view with different options.
+        - An add employee button will render which allows for adding an employee
+    Case: Admin
+        - A link list of all employees, excluding admins or owner, is rendered,
+            - Filtering by department will be optional
+            - Searching by ID or name will be optional
+            - When a link is pressed, that employee's info will be displayed in a view with different options.
+        - An add employee button will render which allows for adding an employee to the admins department
+        (unless admin is in HR department, then they can add to any department like the owner)
+
+Employee Options view
+    Case: Owner
+        - A list of all this employee's data will be shown
+        - A few options will be available in different forms
+            - Change employee department
+            - Change employee pay
+            - Change employee active status
+            - Change employee admin status
+            - Edit employee name
+            - Terminate employee (will remove from database)
+            - Register leave of duty/retirement 
+            (Will set an end date and null out work relevant properties/prevent login or delete after date)
+    Case: Admin
+        - A list of all this employee's data will be shown
+        - A few options will be available in different forms
+            - Change employee pay
+            - Change employee active status
+            - Edit employee name
+            - Terminate employee (will remove from database)
+            - Register leave of duty/retirement 
+            (Will set an end date and null out work relevant properties/prevent login or delete after date)

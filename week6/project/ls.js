@@ -1,4 +1,3 @@
-import {ToDo} from './ToDos.js';
 // Local storage helpers module
 
 // Load ToDos
