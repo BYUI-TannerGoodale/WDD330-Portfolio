@@ -43,6 +43,10 @@ const linksBlock2 = [
     {
         label: "Week 10 Notes and Activities",
         url: "week10/index.html"
+    },
+    {
+        label: "Final",
+        url: "final/index.html"
     }
 ];
 
